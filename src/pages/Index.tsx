@@ -185,7 +185,7 @@ const Index = () => {
               <motion.div
                 key={collection.id}
                 {...fadeInUp}
-                className="group relative cursor-pointer"
+                className="group relative cursor-pointer rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
                 onMouseEnter={() => setIsHovered(collection.id)}
                 onMouseLeave={() => setIsHovered(null)}
               >
@@ -194,6 +194,7 @@ const Index = () => {
                     src={collection.image}
                     alt={collection.title}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    loading="lazy"
                   />
                 </div>
                 <div className="absolute inset-0 bg-black/40 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -227,13 +228,13 @@ const Index = () => {
             <p className="text-neutral-300 mb-8">
               Subscribe to our newsletter for exclusive offers and interior design insights
             </p>
-            <div className="flex gap-4 max-w-md mx-auto">
+            <div className="flex flex-col md:flex-row gap-4 max-w-md mx-auto">
               <input
                 type="email"
                 placeholder="Enter your email"
                 className="flex-1 px-6 py-3 rounded-full bg-white/10 border border-white/20 text-white placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-white/30"
               />
-              <button className="bg-white text-neutral-900 px-8 py-3 rounded-full font-medium hover:bg-neutral-100 transition-colors duration-300 flex items-center gap-2">
+              <button className="bg-white text-neutral-900 px-8 py-3 rounded-full font-medium hover:bg-neutral-100 transition-colors duration-300 flex items-center gap-2 justify-center">
                 Subscribe
                 <ArrowRight className="w-4 h-4" />
               </button>
