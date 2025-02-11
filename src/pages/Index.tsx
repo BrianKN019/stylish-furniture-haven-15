@@ -1,10 +1,17 @@
 
-import { motion } from "framer-motion";
-import { ArrowRight, ChevronRight } from "lucide-react";
-import { useState } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { ArrowRight, ChevronRight, Menu, Search, ShoppingCart, User } from "lucide-react";
+import { useRef, useState } from "react";
 
 const Index = () => {
   const [isHovered, setIsHovered] = useState<number | null>(null);
+  const targetRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+    offset: ["start start", "end start"],
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
 
   const collections = [
     {
@@ -25,6 +32,47 @@ const Index = () => {
       description: "Serene sanctuaries for rest",
       image: "https://images.unsplash.com/photo-1617325247935-2df2e4b9b611?w=800&q=80",
     },
+    {
+      id: 4,
+      title: "Office",
+      description: "Professional spaces that inspire",
+      image: "https://images.unsplash.com/photo-1595514535316-a58671c9a5c7?w=800&q=80",
+    },
+    {
+      id: 5,
+      title: "Outdoor",
+      description: "Luxury for your exterior spaces",
+      image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&q=80",
+    },
+    {
+      id: 6,
+      title: "Accessories",
+      description: "Details that make the difference",
+      image: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&q=80",
+    },
+  ];
+
+  const features = [
+    {
+      title: "Artisan Crafted",
+      description: "Each piece is handcrafted by skilled artisans",
+      icon: "🎨",
+    },
+    {
+      title: "Sustainable Materials",
+      description: "Eco-friendly materials and processes",
+      icon: "🌱",
+    },
+    {
+      title: "Lifetime Warranty",
+      description: "Quality guaranteed for generations",
+      icon: "✨",
+    },
+    {
+      title: "Free Delivery",
+      description: "White glove delivery service included",
+      icon: "🚚",
+    },
   ];
 
   const fadeInUp = {
@@ -35,16 +83,47 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-neutral-100">
-      {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0">
+      {/* Navigation */}
+      <nav className="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-neutral-200">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between h-16">
+            <div className="flex items-center gap-8">
+              <h1 className="font-serif text-2xl">Luxe Living</h1>
+              <div className="hidden md:flex items-center gap-6">
+                <a href="#" className="text-neutral-600 hover:text-neutral-900 transition-colors">Collections</a>
+                <a href="#" className="text-neutral-600 hover:text-neutral-900 transition-colors">New Arrivals</a>
+                <a href="#" className="text-neutral-600 hover:text-neutral-900 transition-colors">Sale</a>
+                <a href="#" className="text-neutral-600 hover:text-neutral-900 transition-colors">About</a>
+              </div>
+            </div>
+            <div className="flex items-center gap-4">
+              <button className="p-2 hover:bg-neutral-100 rounded-full transition-colors">
+                <Search className="w-5 h-5" />
+              </button>
+              <button className="p-2 hover:bg-neutral-100 rounded-full transition-colors">
+                <User className="w-5 h-5" />
+              </button>
+              <button className="p-2 hover:bg-neutral-100 rounded-full transition-colors">
+                <ShoppingCart className="w-5 h-5" />
+              </button>
+              <button className="md:hidden p-2 hover:bg-neutral-100 rounded-full transition-colors">
+                <Menu className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section with Parallax */}
+      <section ref={targetRef} className="relative h-screen flex items-center justify-center overflow-hidden">
+        <motion.div style={{ y }} className="absolute inset-0">
           <img
             src="https://images.unsplash.com/photo-1618220179428-22790b461013?w=1600&q=80"
             alt="Hero"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-black/40" />
-        </div>
+        </motion.div>
         <div className="container relative z-10 px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -63,6 +142,27 @@ const Index = () => {
               <ChevronRight className="w-5 h-5" />
             </button>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-24 bg-white">
+        <div className="container px-4">
+          <div className="grid md:grid-cols-4 gap-8">
+            {features.map((feature, index) => (
+              <motion.div
+                key={feature.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="text-center"
+              >
+                <div className="text-4xl mb-4">{feature.icon}</div>
+                <h3 className="font-serif text-xl mb-2">{feature.title}</h3>
+                <p className="text-neutral-600">{feature.description}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -98,11 +198,14 @@ const Index = () => {
                 </div>
                 <div className="absolute inset-0 bg-black/40 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="absolute inset-0 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="text-center">
+                  <div className="text-center transform -translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                     <h3 className="font-serif text-2xl mb-2">{collection.title}</h3>
-                    <p className="text-sm text-neutral-200">
+                    <p className="text-sm text-neutral-200 mb-4">
                       {collection.description}
                     </p>
+                    <button className="bg-white text-neutral-900 px-6 py-2 rounded-full text-sm font-medium hover:bg-neutral-100 transition-colors duration-300">
+                      View Collection
+                    </button>
                   </div>
                 </div>
               </motion.div>

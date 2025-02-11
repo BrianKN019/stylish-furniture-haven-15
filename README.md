@@ -1,69 +1,87 @@
-# Welcome to your Lovable project
 
-## Project info
+# Luxe Living - Premium Furniture E-commerce
 
-**URL**: https://lovable.dev/projects/eb2935ba-891d-4cc5-9757-aa573d7380d8
+Welcome to Luxe Living, a sophisticated furniture e-commerce platform built with modern web technologies and premium design principles.
 
-## How can I edit this code?
+## Design Philosophy
 
-There are several ways of editing your application.
+Our application embodies luxury and sophistication through:
 
-**Use Lovable**
+- **Clean Typography**: Combining Playfair Display for headings and Inter for body text
+- **Premium Color Palette**: Warm neutrals and sophisticated accents
+- **Micro-interactions**: Subtle animations and transitions for enhanced user experience
+- **Responsive Design**: Seamless experience across all devices
+- **Performance**: Optimized images and smooth scrolling effects
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/eb2935ba-891d-4cc5-9757-aa573d7380d8) and start prompting.
+## Features
 
-Changes made via Lovable will be committed automatically to this repo.
+- **Parallax Scrolling**: Engaging hero section with dynamic scrolling effects
+- **Interactive Collections**: Hover effects and smooth transitions
+- **Premium Navigation**: Clean, minimal navigation with icon-based actions
+- **Features Showcase**: Highlighting unique selling points with animated reveals
+- **Newsletter Integration**: Stylish email capture form
+- **Responsive Images**: High-quality imagery with optimized loading
 
-**Use your preferred IDE**
+## Technical Implementation
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+This project is built with:
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- **React + TypeScript**: For robust, type-safe development
+- **Tailwind CSS**: For utility-first styling
+- **Framer Motion**: For smooth animations and transitions
+- **Shadcn UI**: For premium UI components
+- **Lucide Icons**: For consistent iconography
 
-Follow these steps:
+## Getting Started
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Start development server: `npm run dev`
+4. Visit `http://localhost:5173`
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## Project Structure
 
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```
+src/
+├── components/     # Reusable UI components
+├── pages/         # Page components
+├── styles/        # Global styles and Tailwind config
+└── utils/         # Utility functions
 ```
 
-**Edit a file directly in GitHub**
+## Design System
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Typography
+- Headings: Playfair Display (Serif)
+- Body: Inter (Sans-serif)
 
-**Use GitHub Codespaces**
+### Colors
+- Primary: Warm browns and neutrals
+- Accent: Subtle gold and cream tones
+- Background: Clean whites and light grays
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### Animations
+- Scroll-based parallax effects
+- Hover transitions
+- Fade-in reveals
+- Smooth page transitions
 
-## What technologies are used for this project?
+## Best Practices
 
-This project is built with .
+- Mobile-first responsive design
+- Optimized image loading
+- Semantic HTML structure
+- Accessible UI components
+- Performance optimized animations
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Deployment
 
-## How can I deploy this project?
+The application can be deployed using your preferred hosting service. For optimal performance, we recommend using a CDN for static assets and implementing proper caching strategies.
 
-Simply open [Lovable](https://lovable.dev/projects/eb2935ba-891d-4cc5-9757-aa573d7380d8) and click on Share -> Publish.
+## Contributing
 
-## I want to use a custom domain - is that possible?
+We welcome contributions! Please read our contributing guidelines and submit pull requests for any enhancements.
 
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
