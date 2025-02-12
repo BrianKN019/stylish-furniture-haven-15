@@ -1,7 +1,7 @@
-
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, ChevronRight, Menu, Search, ShoppingCart, User } from "lucide-react";
 import { useRef, useState } from "react";
+import { AvatarCircles } from "@/components/ui/avatar-circles";
 
 const Index = () => {
   const [isHovered, setIsHovered] = useState<number | null>(null);
@@ -13,55 +13,110 @@ const Index = () => {
 
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
 
+  const testimonialAvatars = [
+    "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&q=80",
+    "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&q=80",
+    "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=100&q=80",
+    "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=100&q=80",
+  ];
+
   const collections = [
     {
       id: 1,
-      title: "Living Room",
+      title: "Modern Living Room",
       description: "Contemporary comfort for modern living",
       image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80",
       price: "$2,499",
-      category: "furniture"
+      category: "living"
     },
     {
       id: 2,
-      title: "Dining Room",
+      title: "Luxury Dining Sets",
       description: "Elegant spaces for gathering",
       image: "https://images.unsplash.com/photo-1617806118233-18e1de247200?w=800&q=80",
       price: "$3,299",
-      category: "furniture"
+      category: "dining"
     },
     {
       id: 3,
-      title: "Bedroom",
+      title: "Premium Bedrooms",
       description: "Serene sanctuaries for rest",
       image: "https://images.unsplash.com/photo-1617325247935-2df2e4b9b611?w=800&q=80",
       price: "$1,899",
-      category: "furniture"
+      category: "bedroom"
     },
     {
       id: 4,
-      title: "Office",
+      title: "Executive Office",
       description: "Professional spaces that inspire",
       image: "https://images.unsplash.com/photo-1595514535316-a58671c9a5c7?w=800&q=80",
       price: "$2,199",
-      category: "furniture"
+      category: "office"
     },
     {
       id: 5,
-      title: "Outdoor",
+      title: "Outdoor Collection",
       description: "Luxury for your exterior spaces",
       image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&q=80",
       price: "$4,499",
-      category: "furniture"
+      category: "outdoor"
     },
     {
       id: 6,
-      title: "Accessories",
+      title: "Designer Accessories",
       description: "Details that make the difference",
       image: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&q=80",
       price: "$299",
       category: "accessories"
     },
+    {
+      id: 7,
+      title: "Kitchen Elements",
+      description: "Modern culinary spaces",
+      image: "https://images.unsplash.com/photo-1556911220-bff31c812dba?w=800&q=80",
+      price: "$5,999",
+      category: "kitchen"
+    },
+    {
+      id: 8,
+      title: "Home Library",
+      description: "Sophisticated reading spaces",
+      image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&q=80",
+      price: "$3,899",
+      category: "library"
+    },
+    {
+      id: 9,
+      title: "Entertainment Units",
+      description: "Stylish media solutions",
+      image: "https://images.unsplash.com/photo-1593696140826-c58b021acf8b?w=800&q=80",
+      price: "$2,799",
+      category: "entertainment"
+    },
+    {
+      id: 10,
+      title: "Lighting Collection",
+      description: "Illuminate your space",
+      image: "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=800&q=80",
+      price: "$899",
+      category: "lighting"
+    },
+    {
+      id: 11,
+      title: "Workspace Solutions",
+      description: "Modern home office essentials",
+      image: "https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?w=800&q=80",
+      price: "$1,599",
+      category: "workspace"
+    },
+    {
+      id: 12,
+      title: "Children's Furniture",
+      description: "Playful and practical designs",
+      image: "https://images.unsplash.com/photo-1616486029423-aaa4789e8c9a?w=800&q=80",
+      price: "$999",
+      category: "kids"
+    }
   ];
 
   const features = [
@@ -95,7 +150,6 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-neutral-100">
-      {/* Navigation */}
       <nav className="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-neutral-200">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
@@ -127,7 +181,6 @@ const Index = () => {
         </div>
       </nav>
 
-      {/* Hero Section with Parallax */}
       <section ref={targetRef} className="relative h-screen flex items-center justify-center overflow-hidden">
         <motion.div style={{ y }} className="absolute inset-0">
           <img
@@ -161,28 +214,22 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-24 bg-white">
+      <section className="py-16 bg-white">
         <div className="container px-4">
-          <div className="grid md:grid-cols-4 gap-8">
-            {features.map((feature, index) => (
-              <motion.div
-                key={feature.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="text-center"
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {["Living Room", "Dining", "Bedroom", "Office"].map((category) => (
+              <motion.button
+                key={category}
+                whileHover={{ scale: 1.05 }}
+                className="p-4 rounded-lg bg-neutral-50 hover:bg-neutral-100 border border-neutral-200 transition-all duration-300"
               >
-                <div className="text-4xl mb-4">{feature.icon}</div>
-                <h3 className="font-serif text-xl mb-2">{feature.title}</h3>
-                <p className="text-neutral-600">{feature.description}</p>
-              </motion.div>
+                {category}
+              </motion.button>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Collections Grid */}
       <section id="collections" className="py-24 px-4">
         <div className="container">
           <motion.div
@@ -196,20 +243,20 @@ const Index = () => {
               Explore our carefully curated collections, designed for modern living
             </p>
           </motion.div>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {collections.map((collection) => (
               <motion.div
                 key={collection.id}
                 {...fadeInUp}
-                className="group relative cursor-pointer rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+                className="group relative cursor-pointer rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500"
                 onMouseEnter={() => setIsHovered(collection.id)}
                 onMouseLeave={() => setIsHovered(null)}
               >
-                <div className="aspect-[4/5] overflow-hidden rounded-lg">
+                <div className="aspect-[4/5] overflow-hidden">
                   <img
                     src={collection.image}
                     alt={collection.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     loading="lazy"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
@@ -217,9 +264,9 @@ const Index = () => {
                     }}
                   />
                 </div>
-                <div className="absolute inset-0 bg-black/40 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="absolute inset-0 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="text-center transform -translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 flex items-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <div className="text-white">
                     <h3 className="font-serif text-2xl mb-2">{collection.title}</h3>
                     <p className="text-sm text-neutral-200 mb-2">
                       {collection.description}
@@ -227,8 +274,10 @@ const Index = () => {
                     <p className="text-lg font-semibold mb-4">{collection.price}</p>
                     <button 
                       onClick={() => console.log(`View collection: ${collection.title}`)}
-                      className="bg-white text-neutral-900 px-6 py-2 rounded-full text-sm font-medium hover:bg-neutral-100 transition-colors duration-300">
+                      className="bg-white text-neutral-900 px-6 py-2 rounded-full text-sm font-medium hover:bg-neutral-100 transition-colors duration-300 flex items-center gap-2"
+                    >
                       View Collection
+                      <ArrowRight className="w-4 h-4" />
                     </button>
                   </div>
                 </div>
@@ -238,37 +287,24 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Newsletter Section */}
-      <section className="bg-neutral-900 text-white py-24 px-4">
-        <div className="container">
-          <motion.div
-            {...fadeInUp}
-            className="max-w-2xl mx-auto text-center"
-          >
-            <h2 className="font-serif text-4xl mb-4">
-              Stay Updated
-            </h2>
-            <p className="text-neutral-300 mb-8">
-              Subscribe to our newsletter for exclusive offers and interior design insights
+      <section className="py-24 bg-neutral-900 text-white">
+        <div className="container px-4">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="font-serif text-4xl mb-8">What Our Clients Say</h2>
+            <p className="text-xl text-neutral-300 mb-8">
+              "The attention to detail and quality of furniture exceeded our expectations. 
+              A truly luxurious experience from start to finish."
             </p>
-            <div className="flex flex-col md:flex-row gap-4 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-6 py-3 rounded-full bg-white/10 border border-white/20 text-white placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-white/30"
-              />
-              <button 
-                onClick={() => console.log('Newsletter subscription')}
-                className="bg-white text-neutral-900 px-8 py-3 rounded-full font-medium hover:bg-neutral-100 transition-colors duration-300 flex items-center gap-2 justify-center">
-                Subscribe
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
-          </motion.div>
+            <AvatarCircles 
+              avatarUrls={testimonialAvatars}
+              numPeople={2360}
+              className="justify-center mb-4"
+            />
+            <p className="text-neutral-400">Joined by 2,360+ satisfied customers</p>
+          </div>
         </div>
       </section>
 
-      {/* New Contact Section */}
       <section className="py-24 bg-white">
         <div className="container px-4">
           <motion.div
