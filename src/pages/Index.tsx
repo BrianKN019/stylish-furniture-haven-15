@@ -367,38 +367,102 @@ const Index = () => {
             </p>
           </motion.div>
           <div className="max-w-lg mx-auto">
-            <form className="space-y-6" onSubmit={(e) => { e.preventDefault(); console.log('Contact form submitted'); }}>
-              <div>
-                <input
-                  type="text"
-                  placeholder="Your Name"
-                  className="w-full px-6 py-3 rounded-lg border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-primary-500"
-                />
-              </div>
-              <div>
-                <input
-                  type="email"
-                  placeholder="Your Email"
-                  className="w-full px-6 py-3 rounded-lg border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-primary-500"
-                />
-              </div>
-              <div>
-                <textarea
-                  placeholder="Your Message"
-                  rows={4}
-                  className="w-full px-6 py-3 rounded-lg border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-primary-500"
-                ></textarea>
-              </div>
-              <button
-                type="submit"
-                className="w-full bg-neutral-900 text-white px-8 py-3 rounded-lg font-medium hover:bg-neutral-800 transition-colors duration-300"
-              >
-                Send Message
-              </button>
-            </form>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="bg-white/80 backdrop-blur-lg rounded-2xl p-8 shadow-lg"
+            >
+              <form className="space-y-6" onSubmit={(e) => { e.preventDefault(); console.log('Contact form submitted'); }}>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-neutral-700">Your Name</label>
+                  <input
+                    type="text"
+                    placeholder="John Doe"
+                    className="w-full px-6 py-3 rounded-lg border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-primary-500 bg-white/50 backdrop-blur-sm transition-all duration-200"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-neutral-700">Email Address</label>
+                  <input
+                    type="email"
+                    placeholder="john@example.com"
+                    className="w-full px-6 py-3 rounded-lg border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-primary-500 bg-white/50 backdrop-blur-sm transition-all duration-200"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-neutral-700">Your Message</label>
+                  <textarea
+                    placeholder="Tell us about your vision..."
+                    rows={4}
+                    className="w-full px-6 py-3 rounded-lg border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-primary-500 bg-white/50 backdrop-blur-sm transition-all duration-200 resize-none"
+                  ></textarea>
+                </div>
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  type="submit"
+                  className="w-full bg-gradient-to-r from-neutral-900 via-neutral-800 to-neutral-900 text-white px-8 py-4 rounded-lg font-medium hover:shadow-lg transition-all duration-300 relative overflow-hidden group"
+                >
+                  <span className="relative z-10">Send Message</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary hover:to-primary-hover opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </motion.button>
+              </form>
+            </motion.div>
           </div>
         </div>
       </section>
+
+      {/* Modern Gradient Footer */}
+      <footer className="relative pt-24 pb-12 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-neutral-950 via-neutral-900 to-neutral-950"></div>
+        <div className="container px-4 relative">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+            <div className="space-y-4">
+              <h3 className="font-serif text-2xl text-white">Luxe Living</h3>
+              <p className="text-neutral-400">
+                Crafting luxury spaces with timeless elegance and contemporary design.
+              </p>
+            </div>
+            <div className="space-y-4">
+              <h4 className="font-medium text-white">Quick Links</h4>
+              <ul className="space-y-2">
+                <li><a href="#collections" className="text-neutral-400 hover:text-white transition-colors">Collections</a></li>
+                <li><a href="#new-arrivals" className="text-neutral-400 hover:text-white transition-colors">New Arrivals</a></li>
+                <li><a href="#about" className="text-neutral-400 hover:text-white transition-colors">About Us</a></li>
+              </ul>
+            </div>
+            <div className="space-y-4">
+              <h4 className="font-medium text-white">Customer Care</h4>
+              <ul className="space-y-2">
+                <li><a href="#" className="text-neutral-400 hover:text-white transition-colors">Shipping</a></li>
+                <li><a href="#" className="text-neutral-400 hover:text-white transition-colors">Returns</a></li>
+                <li><a href="#" className="text-neutral-400 hover:text-white transition-colors">FAQ</a></li>
+              </ul>
+            </div>
+            <div className="space-y-4">
+              <h4 className="font-medium text-white">Connect</h4>
+              <ul className="space-y-2">
+                <li><a href="#" className="text-neutral-400 hover:text-white transition-colors">Instagram</a></li>
+                <li><a href="#" className="text-neutral-400 hover:text-white transition-colors">Pinterest</a></li>
+                <li><a href="#" className="text-neutral-400 hover:text-white transition-colors">LinkedIn</a></li>
+              </ul>
+            </div>
+          </div>
+          <div className="border-t border-neutral-800 pt-8">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+              <p className="text-neutral-500 text-sm">
+                © 2024 Luxe Living. All rights reserved.
+              </p>
+              <div className="flex gap-4">
+                <a href="#" className="text-neutral-500 hover:text-white text-sm transition-colors">Privacy Policy</a>
+                <a href="#" className="text-neutral-500 hover:text-white text-sm transition-colors">Terms of Service</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-primary hover:to-primary-hover opacity-0 pointer-events-none"></div>
+      </footer>
     </div>
   );
 };
