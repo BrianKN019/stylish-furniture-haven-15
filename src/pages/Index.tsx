@@ -2,6 +2,9 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, ChevronRight, Menu, Search, ShoppingCart, User } from "lucide-react";
 import { useRef, useState } from "react";
 import { AvatarCircles } from "@/components/ui/avatar-circles";
+import WhyChooseUs from "@/components/sections/WhyChooseUs";
+import InteractiveFilter from "@/components/ui/InteractiveFilter";
+import InteractiveBentoGallery from "@/components/blocks/interactive-bento-gallery";
 
 const Index = () => {
   const [isHovered, setIsHovered] = useState<number | null>(null);
@@ -148,6 +151,44 @@ const Index = () => {
     transition: { duration: 0.6 },
   };
 
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  
+  const filterTags = [
+    { id: 'living', label: 'Living Room', category: 'room' },
+    { id: 'dining', label: 'Dining', category: 'room' },
+    { id: 'bedroom', label: 'Bedroom', category: 'room' },
+    { id: 'office', label: 'Office', category: 'room' },
+    { id: 'modern', label: 'Modern', category: 'style' },
+    { id: 'classic', label: 'Classic', category: 'style' },
+    { id: 'luxury', label: 'Luxury', category: 'style' },
+  ];
+
+  const handleTagSelect = (tagId: string) => {
+    if (!selectedTags.includes(tagId)) {
+      setSelectedTags([...selectedTags, tagId]);
+    }
+  };
+
+  const handleTagRemove = (tagId: string) => {
+    setSelectedTags(selectedTags.filter(id => id !== tagId));
+  };
+
+  const filteredCollections = collections.filter(collection => 
+    selectedTags.length === 0 || selectedTags.includes(collection.category)
+  );
+
+  const demoMediaItems = [
+    {
+      id: 1,
+      type: "image",
+      title: "Modern Living Space",
+      desc: "Contemporary design with comfort in mind",
+      url: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80",
+      span: "md:col-span-2 md:row-span-2"
+    },
+    // ... add more media items for the bento gallery
+  ];
+
   return (
     <div className="min-h-screen bg-neutral-100">
       <nav className="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-neutral-200">
@@ -214,22 +255,19 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-16 bg-white">
+      {/* Interactive Filter */}
+      <section className="py-8 bg-white">
         <div className="container px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {["Living Room", "Dining", "Bedroom", "Office"].map((category) => (
-              <motion.button
-                key={category}
-                whileHover={{ scale: 1.05 }}
-                className="p-4 rounded-lg bg-neutral-50 hover:bg-neutral-100 border border-neutral-200 transition-all duration-300"
-              >
-                {category}
-              </motion.button>
-            ))}
-          </div>
+          <InteractiveFilter
+            tags={filterTags}
+            selectedTags={selectedTags}
+            onTagSelect={handleTagSelect}
+            onTagRemove={handleTagRemove}
+          />
         </div>
       </section>
 
+      {/* Collections Grid */}
       <section id="collections" className="py-24 px-4">
         <div className="container">
           <motion.div
@@ -244,7 +282,7 @@ const Index = () => {
             </p>
           </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {collections.map((collection) => (
+            {filteredCollections.map((collection) => (
               <motion.div
                 key={collection.id}
                 {...fadeInUp}
@@ -285,6 +323,18 @@ const Index = () => {
             ))}
           </div>
         </div>
+      </section>
+
+      {/* Why Choose Us Section */}
+      <WhyChooseUs />
+
+      {/* Interactive Bento Gallery */}
+      <section className="py-24 bg-neutral-100">
+        <InteractiveBentoGallery
+          mediaItems={demoMediaItems}
+          title="Our Latest Projects"
+          description="Explore our most recent furniture installations"
+        />
       </section>
 
       <section className="py-24 bg-neutral-900 text-white">
