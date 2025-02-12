@@ -1,10 +1,14 @@
-import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, ChevronRight, Menu, Search, ShoppingCart, User } from "lucide-react";
 import { useRef, useState } from "react";
-import { AvatarCircles } from "@/components/ui/avatar-circles";
+import { useScroll, useTransform } from "framer-motion";
+import Navigation from "@/components/layout/Navigation";
+import Hero from "@/components/sections/Hero";
+import CollectionsGrid from "@/components/sections/CollectionsGrid";
 import WhyChooseUs from "@/components/sections/WhyChooseUs";
+import ContactSection from "@/components/sections/ContactSection";
+import Footer from "@/components/layout/Footer";
 import InteractiveFilter from "@/components/ui/InteractiveFilter";
 import InteractiveBentoGallery from "@/components/blocks/interactive-bento-gallery";
+import { AvatarCircles } from "@/components/ui/avatar-circles";
 
 const Index = () => {
   const [isHovered, setIsHovered] = useState<number | null>(null);
@@ -191,71 +195,11 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-neutral-100">
-      <nav className="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-neutral-200">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center gap-8">
-              <h1 className="font-serif text-2xl">Luxe Living</h1>
-              <div className="hidden md:flex items-center gap-6">
-                <a href="#collections" className="text-neutral-600 hover:text-neutral-900 transition-colors">Collections</a>
-                <a href="#new-arrivals" className="text-neutral-600 hover:text-neutral-900 transition-colors">New Arrivals</a>
-                <a href="#sale" className="text-neutral-600 hover:text-neutral-900 transition-colors">Sale</a>
-                <a href="#about" className="text-neutral-600 hover:text-neutral-900 transition-colors">About</a>
-              </div>
-            </div>
-            <div className="flex items-center gap-4">
-              <button className="p-2 hover:bg-neutral-100 rounded-full transition-colors" onClick={() => console.log("Search clicked")}>
-                <Search className="w-5 h-5" />
-              </button>
-              <button className="p-2 hover:bg-neutral-100 rounded-full transition-colors" onClick={() => console.log("User clicked")}>
-                <User className="w-5 h-5" />
-              </button>
-              <button className="p-2 hover:bg-neutral-100 rounded-full transition-colors relative" onClick={() => console.log("Cart clicked")}>
-                <ShoppingCart className="w-5 h-5" />
-                <span className="absolute -top-1 -right-1 bg-primary-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">0</span>
-              </button>
-              <button className="md:hidden p-2 hover:bg-neutral-100 rounded-full transition-colors">
-                <Menu className="w-5 h-5" />
-              </button>
-            </div>
-          </div>
-        </div>
-      </nav>
-
-      <section ref={targetRef} className="relative h-screen flex items-center justify-center overflow-hidden">
-        <motion.div style={{ y }} className="absolute inset-0">
-          <img
-            src="https://images.unsplash.com/photo-1618220179428-22790b461013?w=1600&q=80"
-            alt="Hero"
-            className="w-full h-full object-cover"
-            loading="eager"
-          />
-          <div className="absolute inset-0 bg-black/40" />
-        </motion.div>
-        <div className="container relative z-10 px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center text-white max-w-3xl mx-auto"
-          >
-            <h1 className="font-serif text-5xl md:text-7xl font-medium mb-6">
-              Curated Luxury for Your Home
-            </h1>
-            <p className="text-lg md:text-xl mb-8 text-neutral-100">
-              Discover our collection of meticulously crafted furniture pieces
-            </p>
-            <button 
-              onClick={() => document.getElementById('collections')?.scrollIntoView({ behavior: 'smooth' })}
-              className="bg-white text-neutral-900 px-8 py-4 rounded-full font-medium hover:bg-neutral-100 transition-colors duration-300 flex items-center gap-2 mx-auto">
-              Explore Collection
-              <ChevronRight className="w-5 h-5" />
-            </button>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Interactive Filter */}
+      <Navigation />
+      <div ref={targetRef}>
+        <Hero scrollProgress={y} />
+      </div>
+      
       <section className="py-8 bg-white">
         <div className="container px-4">
           <InteractiveFilter
@@ -267,68 +211,14 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Collections Grid */}
-      <section id="collections" className="py-24 px-4">
-        <div className="container">
-          <motion.div
-            {...fadeInUp}
-            className="text-center max-w-2xl mx-auto mb-16"
-          >
-            <h2 className="font-serif text-4xl md:text-5xl text-neutral-900 mb-4">
-              Featured Collections
-            </h2>
-            <p className="text-neutral-600">
-              Explore our carefully curated collections, designed for modern living
-            </p>
-          </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredCollections.map((collection) => (
-              <motion.div
-                key={collection.id}
-                {...fadeInUp}
-                className="group relative cursor-pointer rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500"
-                onMouseEnter={() => setIsHovered(collection.id)}
-                onMouseLeave={() => setIsHovered(null)}
-              >
-                <div className="aspect-[4/5] overflow-hidden">
-                  <img
-                    src={collection.image}
-                    alt={collection.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    loading="lazy"
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement;
-                      target.src = 'https://images.unsplash.com/photo-1618220179428-22790b461013?w=800&q=80';
-                    }}
-                  />
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="absolute inset-0 flex items-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <div className="text-white">
-                    <h3 className="font-serif text-2xl mb-2">{collection.title}</h3>
-                    <p className="text-sm text-neutral-200 mb-2">
-                      {collection.description}
-                    </p>
-                    <p className="text-lg font-semibold mb-4">{collection.price}</p>
-                    <button 
-                      onClick={() => console.log(`View collection: ${collection.title}`)}
-                      className="bg-white text-neutral-900 px-6 py-2 rounded-full text-sm font-medium hover:bg-neutral-100 transition-colors duration-300 flex items-center gap-2"
-                    >
-                      View Collection
-                      <ArrowRight className="w-4 h-4" />
-                    </button>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <CollectionsGrid 
+        collections={filteredCollections}
+        isHovered={isHovered}
+        setIsHovered={setIsHovered}
+      />
 
-      {/* Why Choose Us Section */}
       <WhyChooseUs />
 
-      {/* Interactive Bento Gallery */}
       <section className="py-24 bg-neutral-100">
         <InteractiveBentoGallery
           mediaItems={demoMediaItems}
@@ -355,114 +245,8 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-24 bg-white">
-        <div className="container px-4">
-          <motion.div
-            {...fadeInUp}
-            className="max-w-2xl mx-auto text-center mb-16"
-          >
-            <h2 className="font-serif text-4xl mb-4">Get in Touch</h2>
-            <p className="text-neutral-600">
-              Have questions? Our luxury furniture specialists are here to help.
-            </p>
-          </motion.div>
-          <div className="max-w-lg mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="bg-white/80 backdrop-blur-lg rounded-2xl p-8 shadow-lg"
-            >
-              <form className="space-y-6" onSubmit={(e) => { e.preventDefault(); console.log('Contact form submitted'); }}>
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-neutral-700">Your Name</label>
-                  <input
-                    type="text"
-                    placeholder="John Doe"
-                    className="w-full px-6 py-3 rounded-lg border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-primary-500 bg-white/50 backdrop-blur-sm transition-all duration-200"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-neutral-700">Email Address</label>
-                  <input
-                    type="email"
-                    placeholder="john@example.com"
-                    className="w-full px-6 py-3 rounded-lg border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-primary-500 bg-white/50 backdrop-blur-sm transition-all duration-200"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-neutral-700">Your Message</label>
-                  <textarea
-                    placeholder="Tell us about your vision..."
-                    rows={4}
-                    className="w-full px-6 py-3 rounded-lg border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-primary-500 bg-white/50 backdrop-blur-sm transition-all duration-200 resize-none"
-                  ></textarea>
-                </div>
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  type="submit"
-                  className="w-full bg-gradient-to-r from-neutral-900 via-neutral-800 to-neutral-900 text-white px-8 py-4 rounded-lg font-medium hover:shadow-lg transition-all duration-300 relative overflow-hidden group"
-                >
-                  <span className="relative z-10">Send Message</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-primary hover:to-primary-hover opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </motion.button>
-              </form>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Modern Gradient Footer */}
-      <footer className="relative pt-24 pb-12 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-neutral-950 via-neutral-900 to-neutral-950"></div>
-        <div className="container px-4 relative">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-            <div className="space-y-4">
-              <h3 className="font-serif text-2xl text-white">Luxe Living</h3>
-              <p className="text-neutral-400">
-                Crafting luxury spaces with timeless elegance and contemporary design.
-              </p>
-            </div>
-            <div className="space-y-4">
-              <h4 className="font-medium text-white">Quick Links</h4>
-              <ul className="space-y-2">
-                <li><a href="#collections" className="text-neutral-400 hover:text-white transition-colors">Collections</a></li>
-                <li><a href="#new-arrivals" className="text-neutral-400 hover:text-white transition-colors">New Arrivals</a></li>
-                <li><a href="#about" className="text-neutral-400 hover:text-white transition-colors">About Us</a></li>
-              </ul>
-            </div>
-            <div className="space-y-4">
-              <h4 className="font-medium text-white">Customer Care</h4>
-              <ul className="space-y-2">
-                <li><a href="#" className="text-neutral-400 hover:text-white transition-colors">Shipping</a></li>
-                <li><a href="#" className="text-neutral-400 hover:text-white transition-colors">Returns</a></li>
-                <li><a href="#" className="text-neutral-400 hover:text-white transition-colors">FAQ</a></li>
-              </ul>
-            </div>
-            <div className="space-y-4">
-              <h4 className="font-medium text-white">Connect</h4>
-              <ul className="space-y-2">
-                <li><a href="#" className="text-neutral-400 hover:text-white transition-colors">Instagram</a></li>
-                <li><a href="#" className="text-neutral-400 hover:text-white transition-colors">Pinterest</a></li>
-                <li><a href="#" className="text-neutral-400 hover:text-white transition-colors">LinkedIn</a></li>
-              </ul>
-            </div>
-          </div>
-          <div className="border-t border-neutral-800 pt-8">
-            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-              <p className="text-neutral-500 text-sm">
-                © 2024 Luxe Living. All rights reserved.
-              </p>
-              <div className="flex gap-4">
-                <a href="#" className="text-neutral-500 hover:text-white text-sm transition-colors">Privacy Policy</a>
-                <a href="#" className="text-neutral-500 hover:text-white text-sm transition-colors">Terms of Service</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-primary hover:to-primary-hover opacity-0 pointer-events-none"></div>
-      </footer>
+      <ContactSection />
+      <Footer />
     </div>
   );
 };
