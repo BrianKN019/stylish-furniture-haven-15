@@ -1,6 +1,6 @@
 
 import { motion } from 'framer-motion';
-import { Check, Heart, Shield, Star, Tool, Truck } from 'lucide-react';
+import { Check, Heart, Shield, Star, Wrench, Truck } from 'lucide-react';
 
 const features = [
   {
@@ -14,7 +14,7 @@ const features = [
     description: "Complimentary white-glove delivery service on all orders"
   },
   {
-    icon: Tool,
+    icon: Wrench,
     title: "Expert Assembly",
     description: "Professional assembly and installation included"
   },
