@@ -19,36 +19,48 @@ const Index = () => {
       title: "Living Room",
       description: "Contemporary comfort for modern living",
       image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80",
+      price: "$2,499",
+      category: "furniture"
     },
     {
       id: 2,
       title: "Dining Room",
       description: "Elegant spaces for gathering",
       image: "https://images.unsplash.com/photo-1617806118233-18e1de247200?w=800&q=80",
+      price: "$3,299",
+      category: "furniture"
     },
     {
       id: 3,
       title: "Bedroom",
       description: "Serene sanctuaries for rest",
       image: "https://images.unsplash.com/photo-1617325247935-2df2e4b9b611?w=800&q=80",
+      price: "$1,899",
+      category: "furniture"
     },
     {
       id: 4,
       title: "Office",
       description: "Professional spaces that inspire",
       image: "https://images.unsplash.com/photo-1595514535316-a58671c9a5c7?w=800&q=80",
+      price: "$2,199",
+      category: "furniture"
     },
     {
       id: 5,
       title: "Outdoor",
       description: "Luxury for your exterior spaces",
       image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&q=80",
+      price: "$4,499",
+      category: "furniture"
     },
     {
       id: 6,
       title: "Accessories",
       description: "Details that make the difference",
       image: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&q=80",
+      price: "$299",
+      category: "accessories"
     },
   ];
 
@@ -90,21 +102,22 @@ const Index = () => {
             <div className="flex items-center gap-8">
               <h1 className="font-serif text-2xl">Luxe Living</h1>
               <div className="hidden md:flex items-center gap-6">
-                <a href="#" className="text-neutral-600 hover:text-neutral-900 transition-colors">Collections</a>
-                <a href="#" className="text-neutral-600 hover:text-neutral-900 transition-colors">New Arrivals</a>
-                <a href="#" className="text-neutral-600 hover:text-neutral-900 transition-colors">Sale</a>
-                <a href="#" className="text-neutral-600 hover:text-neutral-900 transition-colors">About</a>
+                <a href="#collections" className="text-neutral-600 hover:text-neutral-900 transition-colors">Collections</a>
+                <a href="#new-arrivals" className="text-neutral-600 hover:text-neutral-900 transition-colors">New Arrivals</a>
+                <a href="#sale" className="text-neutral-600 hover:text-neutral-900 transition-colors">Sale</a>
+                <a href="#about" className="text-neutral-600 hover:text-neutral-900 transition-colors">About</a>
               </div>
             </div>
             <div className="flex items-center gap-4">
-              <button className="p-2 hover:bg-neutral-100 rounded-full transition-colors">
+              <button className="p-2 hover:bg-neutral-100 rounded-full transition-colors" onClick={() => console.log("Search clicked")}>
                 <Search className="w-5 h-5" />
               </button>
-              <button className="p-2 hover:bg-neutral-100 rounded-full transition-colors">
+              <button className="p-2 hover:bg-neutral-100 rounded-full transition-colors" onClick={() => console.log("User clicked")}>
                 <User className="w-5 h-5" />
               </button>
-              <button className="p-2 hover:bg-neutral-100 rounded-full transition-colors">
+              <button className="p-2 hover:bg-neutral-100 rounded-full transition-colors relative" onClick={() => console.log("Cart clicked")}>
                 <ShoppingCart className="w-5 h-5" />
+                <span className="absolute -top-1 -right-1 bg-primary-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">0</span>
               </button>
               <button className="md:hidden p-2 hover:bg-neutral-100 rounded-full transition-colors">
                 <Menu className="w-5 h-5" />
@@ -121,6 +134,7 @@ const Index = () => {
             src="https://images.unsplash.com/photo-1618220179428-22790b461013?w=1600&q=80"
             alt="Hero"
             className="w-full h-full object-cover"
+            loading="eager"
           />
           <div className="absolute inset-0 bg-black/40" />
         </motion.div>
@@ -137,7 +151,9 @@ const Index = () => {
             <p className="text-lg md:text-xl mb-8 text-neutral-100">
               Discover our collection of meticulously crafted furniture pieces
             </p>
-            <button className="bg-white text-neutral-900 px-8 py-4 rounded-full font-medium hover:bg-neutral-100 transition-colors duration-300 flex items-center gap-2 mx-auto">
+            <button 
+              onClick={() => document.getElementById('collections')?.scrollIntoView({ behavior: 'smooth' })}
+              className="bg-white text-neutral-900 px-8 py-4 rounded-full font-medium hover:bg-neutral-100 transition-colors duration-300 flex items-center gap-2 mx-auto">
               Explore Collection
               <ChevronRight className="w-5 h-5" />
             </button>
@@ -167,7 +183,7 @@ const Index = () => {
       </section>
 
       {/* Collections Grid */}
-      <section className="py-24 px-4">
+      <section id="collections" className="py-24 px-4">
         <div className="container">
           <motion.div
             {...fadeInUp}
@@ -195,16 +211,23 @@ const Index = () => {
                     alt={collection.title}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     loading="lazy"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.src = 'https://images.unsplash.com/photo-1618220179428-22790b461013?w=800&q=80';
+                    }}
                   />
                 </div>
                 <div className="absolute inset-0 bg-black/40 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="absolute inset-0 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="text-center transform -translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                     <h3 className="font-serif text-2xl mb-2">{collection.title}</h3>
-                    <p className="text-sm text-neutral-200 mb-4">
+                    <p className="text-sm text-neutral-200 mb-2">
                       {collection.description}
                     </p>
-                    <button className="bg-white text-neutral-900 px-6 py-2 rounded-full text-sm font-medium hover:bg-neutral-100 transition-colors duration-300">
+                    <p className="text-lg font-semibold mb-4">{collection.price}</p>
+                    <button 
+                      onClick={() => console.log(`View collection: ${collection.title}`)}
+                      className="bg-white text-neutral-900 px-6 py-2 rounded-full text-sm font-medium hover:bg-neutral-100 transition-colors duration-300">
                       View Collection
                     </button>
                   </div>
@@ -234,12 +257,60 @@ const Index = () => {
                 placeholder="Enter your email"
                 className="flex-1 px-6 py-3 rounded-full bg-white/10 border border-white/20 text-white placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-white/30"
               />
-              <button className="bg-white text-neutral-900 px-8 py-3 rounded-full font-medium hover:bg-neutral-100 transition-colors duration-300 flex items-center gap-2 justify-center">
+              <button 
+                onClick={() => console.log('Newsletter subscription')}
+                className="bg-white text-neutral-900 px-8 py-3 rounded-full font-medium hover:bg-neutral-100 transition-colors duration-300 flex items-center gap-2 justify-center">
                 Subscribe
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* New Contact Section */}
+      <section className="py-24 bg-white">
+        <div className="container px-4">
+          <motion.div
+            {...fadeInUp}
+            className="max-w-2xl mx-auto text-center mb-16"
+          >
+            <h2 className="font-serif text-4xl mb-4">Get in Touch</h2>
+            <p className="text-neutral-600">
+              Have questions? Our luxury furniture specialists are here to help.
+            </p>
+          </motion.div>
+          <div className="max-w-lg mx-auto">
+            <form className="space-y-6" onSubmit={(e) => { e.preventDefault(); console.log('Contact form submitted'); }}>
+              <div>
+                <input
+                  type="text"
+                  placeholder="Your Name"
+                  className="w-full px-6 py-3 rounded-lg border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-primary-500"
+                />
+              </div>
+              <div>
+                <input
+                  type="email"
+                  placeholder="Your Email"
+                  className="w-full px-6 py-3 rounded-lg border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-primary-500"
+                />
+              </div>
+              <div>
+                <textarea
+                  placeholder="Your Message"
+                  rows={4}
+                  className="w-full px-6 py-3 rounded-lg border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-primary-500"
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                className="w-full bg-neutral-900 text-white px-8 py-3 rounded-lg font-medium hover:bg-neutral-800 transition-colors duration-300"
+              >
+                Send Message
+              </button>
+            </form>
+          </div>
         </div>
       </section>
     </div>
