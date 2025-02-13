@@ -10,8 +10,8 @@ const Footer = () => {
         <SparklesCore
           id="footerSparkles"
           background="transparent"
-          minSize={0.4}
-          maxSize={1}
+          minSize={2}
+          maxSize={5}
           particleDensity={4000}
           className="w-full h-full"
           particleColor="#9b87f5"
