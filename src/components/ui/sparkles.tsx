@@ -10,6 +10,7 @@ interface SparklesCoreProps {
   particleDensity?: number;
   className?: string;
   particleColor?: string;
+  particleColors?: string[];
 }
 
 export const SparklesCore = ({
@@ -20,6 +21,7 @@ export const SparklesCore = ({
   particleDensity = 100,
   className,
   particleColor = "#FFFFFF",
+  particleColors,
 }: SparklesCoreProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const particles: Array<{
@@ -28,6 +30,7 @@ export const SparklesCore = ({
     size: number;
     speedX: number;
     speedY: number;
+    color: string;
   }> = [];
 
   useEffect(() => {
@@ -45,12 +48,17 @@ export const SparklesCore = ({
 
     const createParticles = () => {
       for (let i = 0; i < particleDensity; i++) {
+        const color = particleColors 
+          ? particleColors[Math.floor(Math.random() * particleColors.length)]
+          : particleColor;
+          
         particles.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
           size: Math.random() * (maxSize - minSize) + minSize,
           speedX: (Math.random() - 0.5) * 0.5,
           speedY: (Math.random() - 0.5) * 0.5,
+          color,
         });
       }
     };
@@ -58,9 +66,9 @@ export const SparklesCore = ({
     const drawParticles = () => {
       if (!ctx || !canvas) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = particleColor;
 
       particles.forEach((particle) => {
+        ctx.fillStyle = particle.color;
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
         ctx.fill();
@@ -84,7 +92,7 @@ export const SparklesCore = ({
     return () => {
       window.removeEventListener("resize", resizeCanvas);
     };
-  }, [particleDensity, minSize, maxSize, particleColor]);
+  }, [particleDensity, minSize, maxSize, particleColor, particleColors]);
 
   return (
     <canvas
