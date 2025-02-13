@@ -15,7 +15,7 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-16">
           <Link to="/" className="flex items-center gap-3">
             <img src="/logo.svg" alt="Luxe Living" className="w-8 h-8" />
-            <h1 className="font-serif text-2xl hidden sm:block">Luxe Living</h1>
+            <h1 className="font-serif text-2xl hidden sm:block">Luxe Living Inc</h1>
           </Link>
           <div className="flex items-center gap-4">
             <div className={cn(
