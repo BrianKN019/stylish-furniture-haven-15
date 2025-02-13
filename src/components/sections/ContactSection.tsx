@@ -32,7 +32,7 @@ const ContactSection = () => {
             <form onSubmit={e => {
             e.preventDefault();
             console.log('Contact form submitted');
-          }} className="space-y-6 bg-sky-100">
+          }} className="space-y-6 bg-sky-100 rounded-xl">
               <div className="space-y-2">
                 <label className="text-sm font-medium text-neutral-700">Your Name</label>
                 <input type="text" placeholder="John Doe" className="w-full px-6 py-3 rounded-lg border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-primary-500 bg-white/50 backdrop-blur-sm transition-all duration-200" />
