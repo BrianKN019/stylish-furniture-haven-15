@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -7,7 +6,7 @@ import { SparklesCore } from '@/components/ui/sparkles';
 import { Button } from '@/components/ui/button';
 import Navigation from '@/components/layout/Navigation';
 import Footer from '@/components/layout/Footer';
-import { QRCodeSVG } from 'qrcode.react'; // Changed this line to use named import
+import { QRCodeSVG } from 'qrcode.react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { toast } from 'sonner';
 
@@ -55,9 +54,28 @@ const Cart = () => {
     const orderNum = Math.random().toString(36).substring(2, 10).toUpperCase();
     setOrderNumber(orderNum);
     setShowReceipt(true);
-    // Clear cart after successful checkout
     localStorage.removeItem('cart');
     setCart([]);
+  };
+
+  const generateQRCodeData = () => {
+    const items = cart.map(item => `${item.title} (x${item.quantity}) - $${(item.price * item.quantity).toLocaleString()}`).join('\n');
+    
+    return JSON.stringify({
+      orderNumber,
+      customerInfo: {
+        orderDate: new Date().toLocaleDateString(),
+        orderTime: new Date().toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+      },
+      items,
+      summary: {
+        subtotal: `$${subtotal.toLocaleString()}`,
+        tax: `$${tax.toLocaleString()}`,
+        shipping: shipping === 0 ? 'Free' : `$${shipping}`,
+        total: `$${total.toLocaleString()}`
+      },
+      message: "Thank you for choosing Luxe Living. Your satisfaction is our priority. Each piece has been carefully crafted to bring elegance to your space. We appreciate your trust in our commitment to quality and design excellence."
+    });
   };
 
   return (
@@ -192,8 +210,8 @@ const Cart = () => {
               <p className="text-neutral-600">Order #{orderNumber}</p>
             </div>
             <div className="flex justify-center">
-              <QRCodeSVG // Changed QRCode to QRCodeSVG
-                value={`https://luxeliving.com/order/${orderNumber}`}
+              <QRCodeSVG
+                value={generateQRCodeData()}
                 size={200}
                 level="H"
                 includeMargin={true}
