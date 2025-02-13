@@ -7,7 +7,7 @@ import { SparklesCore } from '@/components/ui/sparkles';
 import { Button } from '@/components/ui/button';
 import Navigation from '@/components/layout/Navigation';
 import Footer from '@/components/layout/Footer';
-import QRCode from 'qrcode.react';
+import { QRCodeSVG } from 'qrcode.react'; // Changed this line to use named import
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { toast } from 'sonner';
 
@@ -192,7 +192,7 @@ const Cart = () => {
               <p className="text-neutral-600">Order #{orderNumber}</p>
             </div>
             <div className="flex justify-center">
-              <QRCode
+              <QRCodeSVG // Changed QRCode to QRCodeSVG
                 value={`https://luxeliving.com/order/${orderNumber}`}
                 size={200}
                 level="H"
