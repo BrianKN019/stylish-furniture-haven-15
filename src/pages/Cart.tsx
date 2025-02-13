@@ -1,27 +1,20 @@
 
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { Trash2, ChevronLeft, QrCode } from 'lucide-react';
+import { ChevronLeft } from 'lucide-react';
 import { SparklesCore } from '@/components/ui/sparkles';
 import { Button } from '@/components/ui/button';
 import Navigation from '@/components/layout/Navigation';
 import Footer from '@/components/layout/Footer';
-import { QRCodeSVG } from 'qrcode.react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { toast } from 'sonner';
-
-interface CartItem {
-  id: number;
-  title: string;
-  price: number;
-  quantity: number;
-  image: string;
-}
+import CartItem from '@/components/cart/CartItem';
+import OrderSummary from '@/components/cart/OrderSummary';
+import OrderConfirmation from '@/components/cart/OrderConfirmation';
+import type { CartItem as CartItemType } from '@/types/cart';
 
 const Cart = () => {
   const navigate = useNavigate();
-  const [cart, setCart] = useState<CartItem[]>([]);
+  const [cart, setCart] = useState<CartItemType[]>([]);
   const [showReceipt, setShowReceipt] = useState(false);
   const [orderNumber, setOrderNumber] = useState('');
 
@@ -47,7 +40,7 @@ const Cart = () => {
   };
 
   const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-  const tax = subtotal * 0.1; // 10% tax
+  const tax = subtotal * 0.1;
   const shipping = subtotal > 5000 ? 0 : 299;
   const total = subtotal + tax + shipping;
 
@@ -57,26 +50,6 @@ const Cart = () => {
     setShowReceipt(true);
     localStorage.removeItem('cart');
     setCart([]);
-  };
-
-  const generateQRCodeData = () => {
-    const items = cart.map(item => `${item.title} (x${item.quantity}) - $${(item.price * item.quantity).toLocaleString()}`).join('\n');
-    
-    return JSON.stringify({
-      orderNumber,
-      customerInfo: {
-        orderDate: new Date().toLocaleDateString(),
-        orderTime: new Date().toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
-      },
-      items,
-      summary: {
-        subtotal: `$${subtotal.toLocaleString()}`,
-        tax: `$${tax.toLocaleString()}`,
-        shipping: shipping === 0 ? 'Free' : `$${shipping}`,
-        total: `$${total.toLocaleString()}`
-      },
-      message: "Thank you for choosing Luxe Living. Your satisfaction is our priority. Each piece has been carefully crafted to bring elegance to your space. We appreciate your trust in our commitment to quality and design excellence."
-    });
   };
 
   return (
@@ -107,7 +80,6 @@ const Cart = () => {
           </button>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Cart Items */}
             <div className="lg:col-span-2 space-y-6">
               {cart.length === 0 ? (
                 <div className="text-center py-12 bg-white rounded-xl">
@@ -121,135 +93,45 @@ const Cart = () => {
                 </div>
               ) : (
                 cart.map(item => (
-                  <motion.div
+                  <CartItem
                     key={item.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="bg-white rounded-xl p-6 flex gap-6"
-                  >
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      className="w-24 h-24 object-cover rounded-lg"
-                    />
-                    <div className="flex-1">
-                      <h3 className="font-medium text-lg text-neutral-900">{item.title}</h3>
-                      <p className="text-primary font-semibold">${item.price.toLocaleString()}</p>
-                      <div className="flex items-center gap-4 mt-4">
-                        <button
-                          onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                          className="p-1 rounded-lg hover:bg-neutral-100 transition-colors"
-                        >
-                          -
-                        </button>
-                        <span>{item.quantity}</span>
-                        <button
-                          onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                          className="p-1 rounded-lg hover:bg-neutral-100 transition-colors"
-                        >
-                          +
-                        </button>
-                      </div>
-                    </div>
-                    <button
-                      onClick={() => removeItem(item.id)}
-                      className="text-neutral-400 hover:text-red-500 transition-colors"
-                    >
-                      <Trash2 className="w-5 h-5" />
-                    </button>
-                  </motion.div>
+                    item={item}
+                    onUpdateQuantity={updateQuantity}
+                    onRemove={removeItem}
+                  />
                 ))
               )}
             </div>
 
-            {/* Order Summary */}
             {cart.length > 0 && (
               <div className="lg:col-span-1">
-                <div className="bg-white rounded-xl p-6 space-y-6">
-                  <h2 className="font-serif text-2xl text-neutral-900">Order Summary</h2>
-                  <div className="space-y-4">
-                    <div className="flex justify-between text-neutral-600">
-                      <span>Subtotal</span>
-                      <span>${subtotal.toLocaleString()}</span>
-                    </div>
-                    <div className="flex justify-between text-neutral-600">
-                      <span>Tax (10%)</span>
-                      <span>${tax.toLocaleString()}</span>
-                    </div>
-                    <div className="flex justify-between text-neutral-600">
-                      <span>Shipping</span>
-                      <span>{shipping === 0 ? 'Free' : `$${shipping}`}</span>
-                    </div>
-                    <div className="border-t pt-4">
-                      <div className="flex justify-between font-semibold text-lg">
-                        <span>Total</span>
-                        <span className="text-primary">${total.toLocaleString()}</span>
-                      </div>
-                    </div>
-                  </div>
-                  <Button
-                    onClick={handleCheckout}
-                    className="w-full"
-                  >
-                    Proceed to Checkout
-                  </Button>
-                </div>
+                <OrderSummary
+                  subtotal={subtotal}
+                  tax={tax}
+                  shipping={shipping}
+                  total={total}
+                  onCheckout={handleCheckout}
+                />
               </div>
             )}
           </div>
         </div>
       </div>
 
-      <Dialog open={showReceipt} onOpenChange={setShowReceipt}>
-        <DialogContent className="sm:max-w-2xl">
-          <DialogHeader>
-            <DialogTitle>Order Confirmation</DialogTitle>
-          </DialogHeader>
-          <div className="p-6 space-y-6">
-            <div className="text-center">
-              <h3 className="font-serif text-2xl text-neutral-900 mb-2">Thank you for your order!</h3>
-              <p className="text-neutral-600">Order #{orderNumber}</p>
-            </div>
-            <div className="flex justify-center">
-              <QRCodeSVG
-                value={generateQRCodeData()}
-                size={200}
-                level="H"
-                includeMargin={true}
-              />
-            </div>
-            <div className="space-y-4">
-              <div className="flex justify-between text-neutral-600">
-                <span>Subtotal</span>
-                <span>${subtotal.toLocaleString()}</span>
-              </div>
-              <div className="flex justify-between text-neutral-600">
-                <span>Tax</span>
-                <span>${tax.toLocaleString()}</span>
-              </div>
-              <div className="flex justify-between text-neutral-600">
-                <span>Shipping</span>
-                <span>{shipping === 0 ? 'Free' : `$${shipping}`}</span>
-              </div>
-              <div className="border-t pt-4">
-                <div className="flex justify-between font-semibold text-lg">
-                  <span>Total</span>
-                  <span className="text-primary">${total.toLocaleString()}</span>
-                </div>
-              </div>
-            </div>
-            <Button
-              onClick={() => {
-                setShowReceipt(false);
-                navigate('/');
-              }}
-              className="w-full"
-            >
-              Continue Shopping
-            </Button>
-          </div>
-        </DialogContent>
-      </Dialog>
+      <OrderConfirmation
+        open={showReceipt}
+        onOpenChange={setShowReceipt}
+        orderNumber={orderNumber}
+        subtotal={subtotal}
+        tax={tax}
+        shipping={shipping}
+        total={total}
+        onContinueShopping={() => {
+          setShowReceipt(false);
+          navigate('/');
+        }}
+        cart={cart}
+      />
 
       <Footer />
     </div>
