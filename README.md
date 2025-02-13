@@ -3,34 +3,131 @@
 
 Welcome to Luxe Living, a sophisticated furniture e-commerce platform built with modern web technologies and premium design principles.
 
+## Application Architecture
+
+```mermaid
+graph TD
+    A[User Interface] --> B[Components]
+    B --> C[Layout Components]
+    B --> D[UI Components]
+    B --> E[Section Components]
+    C --> F[Navigation]
+    C --> G[Footer]
+    D --> H[Buttons]
+    D --> I[Forms]
+    D --> J[Cards]
+    E --> K[Hero]
+    E --> L[Collections]
+    E --> M[Features]
+```
+
+## User Flow
+
+```mermaid
+graph LR
+    A[Landing Page] --> B[Browse Collections]
+    B --> C[View Product]
+    C --> D[Add to Cart]
+    D --> E[Checkout]
+    C --> F[Save for Later]
+    E --> G[Payment]
+    G --> H[Order Confirmation]
+```
+
+## Component Structure
+
+```mermaid
+graph TD
+    A[App] --> B[Navigation]
+    A --> C[Main Content]
+    A --> D[Footer]
+    C --> E[Hero Section]
+    C --> F[Collections Grid]
+    C --> G[Features Section]
+    C --> H[Contact Section]
+```
+
 ## Design Philosophy
 
 Our application embodies luxury and sophistication through:
 
 - **Clean Typography**: Combining Playfair Display for headings and Inter for body text
 - **Premium Color Palette**: Warm neutrals and sophisticated accents
-- **Micro-interactions**: Subtle animations and transitions for enhanced user experience
+- **Micro-interactions**: Subtle animations and transitions
 - **Responsive Design**: Seamless experience across all devices
 - **Performance**: Optimized images and smooth scrolling effects
 
 ## Features
 
-- **Parallax Scrolling**: Engaging hero section with dynamic scrolling effects
-- **Interactive Collections**: Hover effects and smooth transitions
-- **Premium Navigation**: Clean, minimal navigation with icon-based actions
-- **Features Showcase**: Highlighting unique selling points with animated reveals
-- **Newsletter Integration**: Stylish email capture form
-- **Responsive Images**: High-quality imagery with optimized loading
+```mermaid
+mindmap
+  root((Luxe Living))
+    Premium UI
+      Parallax Effects
+      Animated Components
+      Responsive Design
+    User Experience
+      Smooth Navigation
+      Interactive Elements
+      Loading States
+    Performance
+      Image Optimization
+      Code Splitting
+      Lazy Loading
+    Design System
+      Typography
+      Color Scheme
+      Components
+```
 
-## Technical Implementation
+## Technical Stack
 
-This project is built with:
+- **Frontend Framework**: React + TypeScript
+- **Styling**: Tailwind CSS
+- **Animations**: Framer Motion
+- **UI Components**: Shadcn UI
+- **Icons**: Lucide Icons
 
-- **React + TypeScript**: For robust, type-safe development
-- **Tailwind CSS**: For utility-first styling
-- **Framer Motion**: For smooth animations and transitions
-- **Shadcn UI**: For premium UI components
-- **Lucide Icons**: For consistent iconography
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── layout/       # Layout components
+│   ├── sections/     # Page sections
+│   └── ui/           # Reusable UI components
+├── styles/           # Global styles
+└── utils/           # Utility functions
+```
+
+## Component Hierarchy
+
+```mermaid
+graph TD
+    A[App Container] --> B[Navigation]
+    A --> C[Page Content]
+    A --> D[Footer]
+    C --> E[Hero]
+    C --> F[Collections]
+    C --> G[Features]
+    C --> H[Contact]
+    E --> I[Sparkles Effect]
+    E --> J[Hero Content]
+    F --> K[Collection Grid]
+    F --> L[Collection Cards]
+```
+
+## Performance Optimization
+
+```mermaid
+graph LR
+    A[Initial Load] --> B[Code Splitting]
+    B --> C[Component Load]
+    C --> D[Asset Loading]
+    D --> E[Image Optimization]
+    E --> F[Render]
+    F --> G[Hydration]
+```
 
 ## Getting Started
 
@@ -38,16 +135,6 @@ This project is built with:
 2. Install dependencies: `npm install`
 3. Start development server: `npm run dev`
 4. Visit `http://localhost:5173`
-
-## Project Structure
-
-```
-src/
-├── components/     # Reusable UI components
-├── pages/         # Page components
-├── styles/        # Global styles and Tailwind config
-└── utils/         # Utility functions
-```
 
 ## Design System
 
