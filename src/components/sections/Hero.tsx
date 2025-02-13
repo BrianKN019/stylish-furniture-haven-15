@@ -61,11 +61,12 @@ const Hero = ({ scrollProgress }: HeroProps) => {
               <SparklesCore
                 id="heroSparkles"
                 background="transparent"
-                minSize={0.4}
-                maxSize={1}
-                particleDensity={70}
+                minSize={0.6}
+                maxSize={1.4}
+                particleDensity={100}
                 className="w-full h-full"
                 particleColor="#FFFFFF"
+                particleColors={["#FEC6A1", "#E5DEFF", "#FFDEE2", "#D3E4FD", "#F2FCE2"]}
               />
             </div>
             <h1 className="font-serif text-5xl md:text-7xl font-medium mb-6">
