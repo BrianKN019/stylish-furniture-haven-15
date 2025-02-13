@@ -28,23 +28,28 @@ const OrderConfirmation = ({
   cart,
 }: OrderConfirmationProps) => {
   const generateQRCodeData = () => {
-    const items = cart.map(item => `${item.title} (x${item.quantity}) - $${(item.price * item.quantity).toLocaleString()}`).join('\n');
+    const items = cart.map(item => ({
+      title: item.title,
+      quantity: item.quantity,
+      price: item.price,
+      total: item.price * item.quantity
+    }));
     
-    return JSON.stringify({
+    const receiptData = {
       orderNumber,
-      customerInfo: {
-        orderDate: new Date().toLocaleDateString(),
-        orderTime: new Date().toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
-      },
+      date: new Date().toLocaleDateString(),
+      time: new Date().toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }),
       items,
       summary: {
-        subtotal: `$${subtotal.toLocaleString()}`,
-        tax: `$${tax.toLocaleString()}`,
-        shipping: shipping === 0 ? 'Free' : `$${shipping}`,
-        total: `$${total.toLocaleString()}`
-      },
-      message: "Thank you for choosing Luxe Living. Your satisfaction is our priority. Each piece has been carefully crafted to bring elegance to your space. We appreciate your trust in our commitment to quality and design excellence."
-    });
+        subtotal,
+        tax,
+        shipping,
+        total
+      }
+    };
+
+    // Convert to URL-safe string
+    return JSON.stringify(receiptData);
   };
 
   return (
@@ -69,20 +74,20 @@ const OrderConfirmation = ({
           <div className="space-y-4">
             <div className="flex justify-between text-neutral-600">
               <span>Subtotal</span>
-              <span>${subtotal.toLocaleString()}</span>
+              <span>${subtotal.toFixed(2)}</span>
             </div>
             <div className="flex justify-between text-neutral-600">
               <span>Tax</span>
-              <span>${tax.toLocaleString()}</span>
+              <span>${tax.toFixed(2)}</span>
             </div>
             <div className="flex justify-between text-neutral-600">
               <span>Shipping</span>
-              <span>{shipping === 0 ? 'Free' : `$${shipping}`}</span>
+              <span>{shipping === 0 ? 'Free' : `$${shipping.toFixed(2)}`}</span>
             </div>
             <div className="border-t pt-4">
               <div className="flex justify-between font-semibold text-lg">
                 <span>Total</span>
-                <span className="text-primary">${total.toLocaleString()}</span>
+                <span className="text-primary">${total.toFixed(2)}</span>
               </div>
             </div>
           </div>
