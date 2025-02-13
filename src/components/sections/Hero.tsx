@@ -55,7 +55,7 @@ const Hero = ({
               Curated Luxury for Your Home
             </h1>
           </div>
-          <p className="text-lg md:text-xl mb-8 text-gray-50">
+          <p className="text-lg mb-8 text-zinc-50 font-bold md:text-2xl">
             Discover our collection of meticulously crafted furniture pieces
           </p>
           <button onClick={() => document.getElementById('collections')?.scrollIntoView({
