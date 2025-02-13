@@ -3,10 +3,11 @@ import { motion } from 'framer-motion';
 import { SparklesCore } from '@/components/ui/sparkles';
 import Navigation from '@/components/layout/Navigation';
 import Footer from '@/components/layout/Footer';
+import DockMenu from '@/components/layout/DockMenu';
 
 const About = () => {
   return (
-    <div className="min-h-screen bg-neutral-100">
+    <div className="min-h-screen bg-neutral-100 pb-24">
       <Navigation />
       
       <div className="relative">
@@ -84,6 +85,7 @@ const About = () => {
         </div>
       </div>
 
+      <DockMenu />
       <Footer />
     </div>
   );
