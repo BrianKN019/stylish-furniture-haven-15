@@ -1,6 +1,7 @@
 
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 interface Collection {
   id: number;
@@ -18,6 +19,8 @@ interface CollectionsGridProps {
 }
 
 const CollectionsGrid = ({ collections, isHovered, setIsHovered }: CollectionsGridProps) => {
+  const navigate = useNavigate();
+  
   const fadeInUp = {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
@@ -66,7 +69,7 @@ const CollectionsGrid = ({ collections, isHovered, setIsHovered }: CollectionsGr
                   <p className="text-sm text-neutral-200 mb-2">{collection.description}</p>
                   <p className="text-lg font-semibold mb-4">{collection.price}</p>
                   <button 
-                    onClick={() => console.log(`View collection: ${collection.title}`)}
+                    onClick={() => navigate(`/product/${collection.id}`)}
                     className="bg-white text-neutral-900 px-6 py-2 rounded-full text-sm font-medium hover:bg-neutral-100 transition-colors duration-300 flex items-center gap-2"
                   >
                     View Collection
