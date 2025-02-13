@@ -60,7 +60,7 @@ const Hero = ({
           </p>
           <button onClick={() => document.getElementById('collections')?.scrollIntoView({
           behavior: 'smooth'
-        })} className="bg-white text-neutral-900 px-8 py-4 rounded-full font-medium hover:bg-neutral-100 transition-colors duration-300 flex items-center gap-2 mx-auto mb-12">
+        })} className="text-neutral-900 px-8 py-4 rounded-full font-medium transition-colors duration-300 flex items-center gap-2 mx-auto mb-12 bg-teal-200 hover:bg-teal-100">
             Explore Collection
             <ChevronRight className="w-5 h-5" />
           </button>
