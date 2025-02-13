@@ -8,7 +8,7 @@ const Navigation = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   return <nav className="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-neutral-200">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16 bg-amber-200 hover:bg-amber-100 rounded-3xl px-[100px] my-0 mx-[20px]">
+        <div className="flex items-center justify-between h-16 rounded-3xl px-[100px] my-0 mx-[20px] bg-amber-100">
           <Link to="/" className="flex items-center gap-3">
             <img src="/logo.svg" alt="Luxe Living" className="w-8 h-8" />
             <h1 className="font-serif text-2xl hidden sm:block">Luxe Living Inc</h1>
