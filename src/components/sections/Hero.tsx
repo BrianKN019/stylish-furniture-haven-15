@@ -14,21 +14,21 @@ const Hero = ({ scrollProgress }: HeroProps) => {
   const people = [
     {
       id: 1,
+      name: "Brian Kimemia",
+      designation: "CTO",
+      image: "/bk-avatar.png"
+    },
+    {
+      id: 2,
       name: "Sarah Thompson",
       designation: "Interior Designer",
       image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&q=80"
     },
     {
-      id: 2,
+      id: 3,
       name: "Michael Chen",
       designation: "Design Consultant",
       image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&q=80"
-    },
-    {
-      id: 3,
-      name: "David Miller",
-      designation: "Architect",
-      image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=100&q=80"
     },
     {
       id: 4,

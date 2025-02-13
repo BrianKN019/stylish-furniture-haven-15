@@ -9,10 +9,10 @@ const DockMenu = () => {
   const isActive = (path: string) => location.pathname === path;
 
   const menuItems = [
-    { path: '/', icon: Home, label: 'Home' },
-    { path: '/new-arrivals', icon: ShoppingBag, label: 'New' },
-    { path: '/sale', icon: Tag, label: 'Sale' },
-    { path: '/about', icon: Info, label: 'About' }
+    { path: '/', icon: Home, label: 'Home', color: '#3B82F6' }, // bright blue
+    { path: '/new-arrivals', icon: ShoppingBag, label: 'New', color: '#10B981' }, // emerald
+    { path: '/sale', icon: Tag, label: 'Sale', color: '#6366F1' }, // indigo
+    { path: '/about', icon: Info, label: 'About', color: '#14B8A6' } // teal
   ];
 
   return (
@@ -24,13 +24,14 @@ const DockMenu = () => {
     >
       <div className="bg-white/10 backdrop-blur-xl rounded-full border border-white/20 shadow-lg px-6 py-4">
         <div className="flex items-center gap-8">
-          {menuItems.map(({ path, icon: Icon, label }) => (
+          {menuItems.map(({ path, icon: Icon, label, color }) => (
             <Link 
               key={path}
               to={path}
               className={`relative group flex flex-col items-center gap-1 transition-all duration-300 ${
-                isActive(path) ? 'text-primary scale-110' : 'text-neutral-400 hover:text-primary'
+                isActive(path) ? 'scale-110' : 'hover:text-primary'
               }`}
+              style={{ color: isActive(path) ? color : 'rgb(156 163 175)' }}
             >
               <motion.div
                 whileHover={{ scale: 1.2 }}
@@ -38,9 +39,10 @@ const DockMenu = () => {
               >
                 <Icon className="w-5 h-5" />
                 <motion.div
-                  className="absolute inset-0 bg-primary/20 rounded-full -z-10 opacity-0 group-hover:opacity-100"
+                  className="absolute inset-0 rounded-full -z-10 opacity-0 group-hover:opacity-100"
                   layoutId="highlight"
                   transition={{ type: "spring", bounce: 0.2 }}
+                  style={{ backgroundColor: `${color}20` }}
                 />
               </motion.div>
               <span className="text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity absolute -bottom-4 whitespace-nowrap">
