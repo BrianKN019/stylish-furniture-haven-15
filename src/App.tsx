@@ -12,6 +12,7 @@ import NotFound from "./pages/NotFound";
 import NewArrivals from "./pages/NewArrivals";
 import Sale from "./pages/Sale";
 import About from "./pages/About";
+import DockMenu from "@/components/layout/DockMenu";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +30,7 @@ const App = () => (
         <Route path="/about" element={<About />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <DockMenu />
       <Analytics />
     </TooltipProvider>
   </QueryClientProvider>
