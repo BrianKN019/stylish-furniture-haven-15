@@ -12,7 +12,7 @@ const Footer = () => {
           background="transparent"
           minSize={0.4}
           maxSize={1}
-          particleDensity={40}
+          particleDensity={4000}
           className="w-full h-full"
           particleColor="#9b87f5"
           particleColors={["#9b87f5", "#8b77e5", "#7a66d5", "#6956c5", "#5845b5"]}
@@ -24,7 +24,7 @@ const Footer = () => {
           {/* Brand Section */}
           <div className="md:col-span-4">
             <div className="p-6 rounded-xl bg-white/90 shadow-lg backdrop-blur-sm">
-              <h3 className="font-serif text-2xl text-neutral-800 mb-3">Luxe Living</h3>
+              <h3 className="font-serif text-2xl text-neutral-800 mb-3">Luxe Living Inc</h3>
               <div className="flex gap-4 mt-4">
                 <a href="#" className="bg-neutral-50 hover:bg-neutral-100 p-2.5 rounded-lg transition-all">
                   <Mail className="w-5 h-5 text-primary" />
