@@ -1,4 +1,3 @@
-
 import { motion } from 'framer-motion';
 import { SparklesCore } from '@/components/ui/sparkles';
 import Navigation from '@/components/layout/Navigation';
@@ -13,92 +12,71 @@ const NewArrivals = () => {
       id: 1,
       title: "Modern Velvet Sofa",
       price: "$2,499",
-      image: "https://images.unsplash.com/photo-1634712282287-14ed57b9cc89?w=800&q=80",
+      image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&q=80",
       description: "Introducing our latest velvet masterpiece"
     },
     {
       id: 2,
       title: "Minimalist Dining Set",
       price: "$1,899",
-      image: "https://images.unsplash.com/photo-1617806118233-18e1de247200?w=800&q=80",
+      image: "https://images.unsplash.com/photo-1505693314120-0d443867891c?w=800&q=80",
       description: "Contemporary dining elegance"
     },
     {
       id: 3,
       title: "Artisan Coffee Table",
       price: "$899",
-      image: "https://images.unsplash.com/photo-1532372320978-9b6d03df7921?w=800&q=80",
+      image: "https://images.unsplash.com/photo-1554295405-abb8fd54f153?w=800&q=80",
       description: "Handcrafted beauty meets function"
     },
     {
       id: 4,
       title: "Designer Reading Chair",
       price: "$1,299",
-      image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80",
+      image: "https://images.unsplash.com/photo-1580480055273-228ff5388ef8?w=800&q=80",
       description: "Modern comfort for your reading nook"
     },
     {
       id: 5,
       title: "Luxury Console Table",
       price: "$899",
-      image: "https://images.unsplash.com/photo-1618220179428-22790b461013?w=800&q=80",
+      image: "https://images.unsplash.com/photo-1533377379233-5e96ac3ad974?w=800&q=80",
       description: "Elegant entryway piece"
     },
     {
       id: 6,
       title: "Modern Bookshelf",
       price: "$1,499",
-      image: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=800&q=80",
+      image: "https://images.unsplash.com/photo-1594026112284-02bb6f3352fe?w=800&q=80",
       description: "Contemporary storage solution"
     },
     {
       id: 7,
       title: "Accent Armchair",
       price: "$799",
-      image: "https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=800&q=80",
+      image: "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&q=80",
       description: "Statement piece for any room"
     },
     {
       id: 8,
       title: "Glass Dining Table",
       price: "$1,699",
-      image: "https://images.unsplash.com/photo-1498936178812-4b2e558d2937?w=800&q=80",
+      image: "https://images.unsplash.com/photo-1604578762246-41134e37f9cc?w=800&q=80",
       description: "Modern dining elegance"
     },
     {
       id: 9,
       title: "Leather Ottoman",
       price: "$499",
-      image: "https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?w=800&q=80",
+      image: "https://images.unsplash.com/photo-1592078615290-033ee584e267?w=800&q=80",
       description: "Versatile seating solution"
     },
     {
       id: 10,
       title: "Designer Floor Lamp",
       price: "$399",
-      image: "https://images.unsplash.com/photo-1438565434616-3ef039228b15?w=800&q=80",
+      image: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=800&q=80",
       description: "Sculptural lighting piece"
-    },
-    {
-      id: 11,
-      title: "Marble Side Table",
-      price: "$699",
-      image: "https://images.unsplash.com/photo-1501286353178-1ec881214838?w=800&q=80",
-      description: "Luxurious accent piece"
-    },
-    {
-      id: 12,
-      title: "Modern Mirror",
-      price: "$899",
-      image: "https://images.unsplash.com/photo-1469041797191-50ace28483c3?w=800&q=80",
-      description: "Statement wall piece"
-    },
-    {
-      id: 13,
-      title: "Accent Cabinet",
-      price: "$1,299",
-      image: "https://images.unsplash.com/photo-1452378174528-3090a4bba7b2?w=800&q=80",
-      description: "Storage with style"
     }
   ];
 

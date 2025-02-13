@@ -1,4 +1,3 @@
-
 import { motion } from 'framer-motion';
 import { SparklesCore } from '@/components/ui/sparkles';
 import Navigation from '@/components/layout/Navigation';
@@ -12,107 +11,83 @@ const Sale = () => {
   const saleItems = [
     {
       id: 1,
-      title: "Luxury Leather Armchair",
-      originalPrice: "$1,999",
-      salePrice: "$1,499",
-      discount: "25%",
-      image: "https://images.unsplash.com/photo-1617103996702-96ff29b1c467?w=800&q=80"
+      title: "Luxury Leather Sofa",
+      originalPrice: "$2,999",
+      salePrice: "$1,999",
+      discount: "33%",
+      image: "https://images.unsplash.com/photo-1550254478-ead40cc54513?w=800&q=80"
     },
     {
       id: 2,
-      title: "Designer Floor Lamp",
-      originalPrice: "$599",
-      salePrice: "$399",
-      discount: "33%",
-      image: "https://images.unsplash.com/photo-1530622069441-64253102ae04?w=800&q=80"
+      title: "Modern Dining Set",
+      originalPrice: "$1,999",
+      salePrice: "$1,399",
+      discount: "30%",
+      image: "https://images.unsplash.com/photo-1595515106863-c1f8669fd86f?w=800&q=80"
     },
     {
       id: 3,
-      title: "Marble Coffee Table",
+      title: "Elegant Coffee Table",
       originalPrice: "$899",
-      salePrice: "$699",
-      discount: "22%",
-      image: "https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?w=800&q=80"
+      salePrice: "$599",
+      discount: "33%",
+      image: "https://images.unsplash.com/photo-1581428982868-e410dd047a90?w=800&q=80"
     },
     {
       id: 4,
-      title: "Modern Dining Chair Set",
+      title: "Designer Armchair",
       originalPrice: "$1,299",
-      salePrice: "$999",
-      discount: "23%",
-      image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80"
+      salePrice: "$899",
+      discount: "30%",
+      image: "https://images.unsplash.com/photo-1519947486511-46149fa0a254?w=800&q=80"
     },
     {
       id: 5,
-      title: "Vintage Console Table",
-      originalPrice: "$799",
-      salePrice: "$599",
-      discount: "25%",
-      image: "https://images.unsplash.com/photo-1618220179428-22790b461013?w=800&q=80"
+      title: "Luxury Bed Frame",
+      originalPrice: "$2,499",
+      salePrice: "$1,699",
+      discount: "32%",
+      image: "https://images.unsplash.com/photo-1505693314120-0d443867891c?w=800&q=80"
     },
     {
       id: 6,
-      title: "Art Deco Mirror",
-      originalPrice: "$599",
-      salePrice: "$399",
-      discount: "33%",
-      image: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=800&q=80"
+      title: "Art Deco Sideboard",
+      originalPrice: "$1,899",
+      salePrice: "$1,299",
+      discount: "32%",
+      image: "https://images.unsplash.com/photo-1593642533144-3d62aa4783ec?w=800&q=80"
     },
     {
       id: 7,
-      title: "Designer Bookshelf",
-      originalPrice: "$1,499",
-      salePrice: "$999",
-      discount: "33%",
-      image: "https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=800&q=80"
+      title: "Modern Wardrobe",
+      originalPrice: "$2,299",
+      salePrice: "$1,599",
+      discount: "30%",
+      image: "https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=800&q=80"
     },
     {
       id: 8,
-      title: "Modern Side Table",
-      originalPrice: "$399",
-      salePrice: "$299",
-      discount: "25%",
-      image: "https://images.unsplash.com/photo-1498936178812-4b2e558d2937?w=800&q=80"
+      title: "Accent Chair",
+      originalPrice: "$999",
+      salePrice: "$699",
+      discount: "30%",
+      image: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=800&q=80"
     },
     {
       id: 9,
-      title: "Contemporary Vase Set",
-      originalPrice: "$299",
-      salePrice: "$199",
+      title: "Designer Desk",
+      originalPrice: "$1,499",
+      salePrice: "$999",
       discount: "33%",
-      image: "https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?w=800&q=80"
+      image: "https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=800&q=80"
     },
     {
       id: 10,
-      title: "Accent Wall Art",
-      originalPrice: "$599",
-      salePrice: "$399",
+      title: "Premium Lighting Set",
+      originalPrice: "$899",
+      salePrice: "$599",
       discount: "33%",
-      image: "https://images.unsplash.com/photo-1438565434616-3ef039228b15?w=800&q=80"
-    },
-    {
-      id: 11,
-      title: "Luxury Table Lamp",
-      originalPrice: "$399",
-      salePrice: "$299",
-      discount: "25%",
-      image: "https://images.unsplash.com/photo-1501286353178-1ec871214838?w=800&q=80"
-    },
-    {
-      id: 12,
-      title: "Designer Ottoman",
-      originalPrice: "$499",
-      salePrice: "$349",
-      discount: "30%",
-      image: "https://images.unsplash.com/photo-1469041797191-50ace28483c3?w=800&q=80"
-    },
-    {
-      id: 13,
-      title: "Modern Plant Stand",
-      originalPrice: "$199",
-      salePrice: "$149",
-      discount: "25%",
-      image: "https://images.unsplash.com/photo-1452378174528-3090a4bba7b2?w=800&q=80"
+      image: "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=800&q=80"
     }
   ];
 
