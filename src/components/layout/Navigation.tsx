@@ -1,39 +1,23 @@
-
 import { Search, ShoppingCart } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
-
 const Navigation = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-
-  return (
-    <nav className="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-neutral-200">
+  return <nav className="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-neutral-200">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-16 bg-amber-200 hover:bg-amber-100 rounded-3xl px-[100px] my-0 mx-[20px]">
           <Link to="/" className="flex items-center gap-3">
             <img src="/logo.svg" alt="Luxe Living" className="w-8 h-8" />
             <h1 className="font-serif text-2xl hidden sm:block">Luxe Living Inc</h1>
           </Link>
           <div className="flex items-center gap-4">
-            <div className={cn(
-              "transition-all duration-300",
-              isSearchOpen ? "w-64" : "w-0"
-            )}>
-              {isSearchOpen && (
-                <Input 
-                  type="search" 
-                  placeholder="Search products..." 
-                  className="bg-neutral-100 border-none focus:ring-2 focus:ring-primary/20"
-                />
-              )}
+            <div className={cn("transition-all duration-300", isSearchOpen ? "w-64" : "w-0")}>
+              {isSearchOpen && <Input type="search" placeholder="Search products..." className="bg-neutral-100 border-none focus:ring-2 focus:ring-primary/20" />}
             </div>
-            <button 
-              className="p-2 hover:bg-neutral-100 rounded-full transition-colors" 
-              onClick={() => setIsSearchOpen(!isSearchOpen)}
-            >
+            <button className="p-2 hover:bg-neutral-100 rounded-full transition-colors" onClick={() => setIsSearchOpen(!isSearchOpen)}>
               <Search className="w-5 h-5 text-neutral-600" />
             </button>
             <Avatar className="w-8 h-8">
@@ -47,8 +31,6 @@ const Navigation = () => {
           </div>
         </div>
       </div>
-    </nav>
-  );
+    </nav>;
 };
-
 export default Navigation;
