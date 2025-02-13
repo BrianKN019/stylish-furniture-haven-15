@@ -87,7 +87,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-neutral-600">
           <div className="flex items-center gap-2">
             <Copyright className="w-3.5 h-3.5" />
-            <p>2024 Luxe Living. All rights reserved.</p>
+            <p>2025 Luxe Living Inc. All rights reserved.</p>
           </div>
           <div className="flex gap-6">
             <a href="#" className="hover:text-primary transition-colors">Privacy</a>
