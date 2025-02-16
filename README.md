@@ -1,4 +1,4 @@
-# Luxe Living - Premium Furniture E-commerce
+![image](https://github.com/user-attachments/assets/c169c87e-df2f-469a-ba1b-9bec8903a286)# Luxe Living - Premium Furniture E-commerce
 
 Welcome to Luxe Living, a sophisticated furniture e-commerce platform built with modern web technologies and premium design principles.
 
@@ -13,6 +13,9 @@ Welcome to Luxe Living, a sophisticated furniture e-commerce platform built with
 - Responsive design optimized for both desktop and mobile
 - Premium search functionality with animated transitions
 - Integrated avatar system featuring team members
+
+![Furniture Image](https://raw.githubusercontent.com/BrianKN019/stylish-furniture-haven-15/main/public/HJ.PNG)
+
 
 ### User Interface
 - Enhanced hero section with team showcase
