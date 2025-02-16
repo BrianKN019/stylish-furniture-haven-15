@@ -2,6 +2,9 @@
 
 Welcome to Luxe Living, a sophisticated furniture e-commerce platform built with modern web technologies and premium design principles.
 
+![Furniture Image](https://raw.githubusercontent.com/BrianKN019/stylish-furniture-haven-15/main/public/dfh.PNG)
+
+
 ## 🆕 Latest Features
 
 ### Navigation & UI Enhancements
