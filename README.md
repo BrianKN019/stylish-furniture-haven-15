@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/c169c87e-df2f-469a-ba1b-9bec8903a286)# Luxe Living - Premium Furniture E-commerce
+# Luxe Living - Premium Furniture E-commerce
 
 Welcome to Luxe Living, a sophisticated furniture e-commerce platform built with modern web technologies and premium design principles.
 
