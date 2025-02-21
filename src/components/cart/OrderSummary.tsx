@@ -33,7 +33,7 @@ const OrderSummary = ({ subtotal, tax, shipping, total, onCheckout }: OrderSumma
           </div>
         </div>
       </div>
-      <Button onClick={onCheckout} className="w-full">
+      <Button onClick={onCheckout} className="w-full"> 
         Proceed to Checkout
       </Button>
     </div>
